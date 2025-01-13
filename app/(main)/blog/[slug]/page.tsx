@@ -8,6 +8,7 @@ interface Content {
 	date: string;
 	author?: string;
 	slug: string;
+	comments: boolean
 	renderedHtml: {
 		__html: string;
 	}
@@ -31,7 +32,9 @@ export default async function Post(req) {
 					<p className='text-ctp-text text-md font-bold'>{postContent.author}</p>
 				</div>
 				<div dangerouslySetInnerHTML={postContent.renderedHtml} className='text-ctp-text' id='postContent' />
-				<CommentCard />
+				{postContent.comments == true &&
+					<CommentCard />
+				}
 			</BaseCard>
 		</main>
 	)
