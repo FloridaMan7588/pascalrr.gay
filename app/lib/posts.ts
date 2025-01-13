@@ -114,7 +114,7 @@ export async function getBlogsData(): Promise<blogPost[]> {
 
 export async function getMastoData() {
 	const tootData = []
-	fetch('https://blahaj.zone/@floridaman.json', { next: { revalidate: 0 } })
+	await fetch('https://blahaj.zone/@floridaman.json', { next: { revalidate: 0 } })
 		.then(res => res.json())
 		.then(data => {
 			for (const item of data.items) {

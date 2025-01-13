@@ -2,6 +2,7 @@ import RSS from 'rss';
 import { appConfig } from '~/next.config.mjs'
 import { getBlogsData } from '@lib/posts';
 import fs from 'fs';
+import path from 'path';
 
 
 export async function generateRssFeed() {
@@ -26,5 +27,9 @@ export async function generateRssFeed() {
 			date: post.date,
 		});
 	})
-	fs.writeFileSync(process.cwd() + '/public/feed.xml', feed.xml({ indent: true }));
+	fs.writeFile(path.join(process.cwd(), '/public/feed.xml'), feed.xml({ indent: true }), (err) => {
+		if (err) {
+			console.error(err);
+		}
+	})
 }
