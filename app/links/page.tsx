@@ -47,7 +47,7 @@ export default function Page() {
 					<Avatar className="rounded-[70px] max-h-48 max-w-48" />
 				</div>
 				<div className="flex flex-col py-8 text-center justify-center items-center">
-					<h1 className="font-bold text-3xl py-4">FloridaMan7588</h1>
+					<h1 className="font-bold text-3xl py-4 bi-animated">Pascalrr</h1>
 					<p className="py-4 px-4 text-lg">
 						kittycoded enby programmer on the internet • minor • do drugs •
 						become ungovernable
@@ -56,56 +56,56 @@ export default function Page() {
 					<LinkCard
 						icon={faGlobeIcon}
 						name="Website"
-						link="https://fm7588.me/redirect/website"
+						link="https://pascalrr.gay/redirect/website"
 						description="Link to Personal portfolio/website"
 						className="bg-blue-700"
 					/>
 					<LinkCard
 						icon={faGithubIcon}
 						name="GitHub"
-						link="https://fm7588.me/redirect/github"
+						link="https://pascalrr.gay/redirect/github"
 						description="Link to Personal GitHub Page"
 						className="bg-black"
 					/>
 					<LinkCard
 						icon={faLinkedinIcon}
 						name="LinkedIn"
-						link="https://fm7588.me/redirect/linkedin"
+						link="https://pascalrr.gay/redirect/linkedin"
 						description="Link to Personal LinkedIn page"
 						className="bg-indigo-700"
 					/>
 					<LinkCard
 						icon={faMastodonIcon}
 						name="Mastodon"
-						link="https://fm7588.me/redirect/mastodon"
+						link="https://pascalrr.gay/redirect/mastodon"
 						description="Link to Personal Microblog/ Mastodon page"
 						className="bg-violet-900"
 					/>
 					<LinkCard
 						icon={faYoutubeIcon}
 						name="YouTube"
-						link="https://fm7588.me/redirect/youtube"
+						link="https://pascalrr.gay/redirect/youtube"
 						description="Link to Programming YouTube Channel"
 						className="bg-red-600"
 					/>
 					<LinkCard
 						icon={faDiscordIcon}
 						name="Discord Server"
-						link="https://fm7588.me/redirect/discord"
+						link="https://pascalrr.gay/redirect/discord"
 						description="Link to Project discord server"
 						className="bg-indigo-600"
 					/>
 					<LinkCard
 						icon={faDollarIcon}
 						name="Ko-Fi"
-						link="https://fm7588.me/redirect/kofi"
+						link="https://pascalrr.gay/redirect/kofi"
 						description="Link to Ko-Fi page"
 						className="bg-sky-600"
 					/>
 					<LinkCard
 						icon={faDollarIcon}
 						name="Buy Me a Coffee"
-						link="https://fm7588.me/redirect/coffee"
+						link="https://pascalrr.gay/redirect/coffee"
 						description="Link to Buy me A Coffee"
 						className="bg-amber-400"
 					/>
@@ -113,14 +113,14 @@ export default function Page() {
 					<LinkCard
 						icon={faGithubIcon}
 						name="Waterfox Flatpak GitHub"
-						link="https://fm7588.me/redirect/waterfox-github"
+						link="https://pascalrr.gay/redirect/waterfox-github"
 						description="Link to Waterfox Flatpak GitHub"
 						className="bg-black"
 					/>
 					<LinkCard
 						icon={faGithubIcon}
 						name="Mochad Addon GitHub"
-						link="https://fm7588.me/redirect/mochad-github"
+						link="https://pascalrr.gay/redirect/mochad-github"
 						description="Link to Mochad Addon GitHub"
 						className="bg-black"
 					/>

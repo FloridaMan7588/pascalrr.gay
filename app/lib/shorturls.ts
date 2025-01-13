@@ -9,11 +9,11 @@ const config: Config = {
 	shorturls: [
 		{
 			redirect: "links",
-			target: "https://floridaman7588.me/links"
+			target: "https://www.pascalrr.gay/links"
 		},
 		{
 			redirect: "website",
-			target: "https://floridaman7588.me"
+			target: "https://www.pascalrr.gay"
 		},
 		{
 			redirect: "github",

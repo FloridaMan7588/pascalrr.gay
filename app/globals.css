@@ -38,3 +38,23 @@ body {
 .hoverPop110 {
   @apply transition-transform duration-300 transform hover:scale-110
 }
+
+
+/* Thanks stackoverflow! */
+/*https://stackoverflow.com/questions/54702124/rainbow-text-animation-using-only-css*/
+.bi-animated {
+    background: linear-gradient(to right, #D60270, #9B4F96 , #0038A8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 0;
+    }
+}

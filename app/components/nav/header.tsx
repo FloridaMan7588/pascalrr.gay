@@ -1,7 +1,12 @@
 import NavMenu from '@components/nav/navMenu';
+import { Arima } from 'next/font/google';
 import Avatar from '@components/avatar';
-
 import Link from 'next/link';
+
+const indieFlower = Arima({
+	subsets: ["latin"], preload: true, display: 'swap',
+	weight: '400'
+});
 
 export default function Header() {
 	return (
@@ -11,8 +16,10 @@ export default function Header() {
 					<div className="flex justify-center place-content-start w-9 h-9 relative">
 						<Avatar className='relative rounded-full max-h-9 max-w-9' />
 					</div>
-					<div className="flex items-center">
-						<Link href="/" className="text-ctp-text lg:text-3xl sm:text-1xl font-bold px-4"><p>FloridaMan&apos;s Site</p></Link>
+					<div className={`${indieFlower.className} flex flex-row`}>
+						<Link href="/" className="text-ctp-text lg:text-3xl sm:text-1xl font-bold px-4 flex">
+								<p>pascalrrr</p><p className='bi-animated'>.gay</p>
+						</Link>
 					</div>
 				</div>
 				<NavMenu />

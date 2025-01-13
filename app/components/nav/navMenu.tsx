@@ -2,14 +2,21 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { Kalam } from 'next/font/google';
+
 import { useState } from 'react';
 import Link from "next/link";
+
+const kalam = Kalam({
+	subsets: ["latin"], preload: true, display: 'swap',
+	weight: '400'
+});
 
 export default function NavMenu() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [onMobile] = useState(false)
 	return (
-		<div>
+		<div className={`${kalam.className}`}>
 			<div className="lg:hidden flex justify-end items-center">
 				<button type="button" className={`${!isOpen ? '' : 'hidden'} text-ctp-text`} onClick={() => setIsOpen(!isOpen)} aria-label='Header Menu'>
 					<FontAwesomeIcon icon={faBars} />
