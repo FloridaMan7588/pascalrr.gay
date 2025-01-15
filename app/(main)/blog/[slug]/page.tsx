@@ -17,9 +17,10 @@ interface Content {
 export default async function Post(req) {
 	const validSlugs = await getPostSlugs()
 	let pageSlug = '404'
-	for (const slug of validSlugs) {
-		if (req.params.slug == slug) {
-			pageSlug = slug
+	const { slug } = await req.params
+	for (const currentSlug of validSlugs) {
+		if (slug == currentSlug) {
+			pageSlug = currentSlug
 		}
 	}
 	const postContent: Content = await getPostData(pageSlug)
