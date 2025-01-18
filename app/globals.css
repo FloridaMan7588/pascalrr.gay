@@ -50,6 +50,16 @@ body {
     animation: rainbow_animation 6s ease-in-out infinite;
     background-size: 400% 100%;
 }
+
+.enby-animated {
+	background: linear-gradient(to right, #FCF434, #FFFFFF, #9C59D1, #2C2C2C);
+	-webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
 @keyframes rainbow_animation {
     0%,100% {
         background-position: 0 0;

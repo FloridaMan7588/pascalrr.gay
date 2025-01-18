@@ -7,7 +7,7 @@ export default function ONeko(): ReactNode | null {
 	useEffect(() => {
 		if (!neko.current) {
 			neko.current = new Neko({
-				speed: 0.2,
+				speed: 1,
 				origin: {
 					x: 100,
 					y: 100,
@@ -15,6 +15,6 @@ export default function ONeko(): ReactNode | null {
 			});
 		}
 	}, [neko]);
-
-	return null;
+	
+	return null
 }

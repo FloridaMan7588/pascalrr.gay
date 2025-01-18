@@ -34,11 +34,18 @@ const faDiscordIcon = faDiscord as IconProp;
 const faDollarIcon = faDollarSign as IconProp;
 
 export default function Page() {
+	const randomChoice = Math.floor(Math.random() * 2)
+	var mainHeader
+	if (randomChoice == 0) {
+		mainHeader = `<div class='flex place-items-center'><p class='bi-animated'>Pascalrr</p></div>`
+	} else {
+		mainHeader = `<div class='flex place-items-center'><p class='enby-animated'>Pascalrr</p></div>`
+	}
 	return (
 		<div className="h-screen">
 			<Image
 				src={background}
-				className="-z-10 h-screen w-screen grayscale-[75%] blur-[25px] fixed md:object-cover"
+				className="-z-10 h-screen w-screen fixed md:object-cover grayscale-[75%] blur-[25px]"
 				quality={100}
 				alt="A background for the page, both the bisexual and nonbinary flags intersecting"
 			/>
@@ -47,7 +54,7 @@ export default function Page() {
 					<Avatar className="rounded-[70px] max-h-48 max-w-48" />
 				</div>
 				<div className="flex flex-col py-8 text-center justify-center items-center">
-					<h1 className="font-bold text-3xl py-4 bi-animated">Pascalrr</h1>
+					<div className="font-bold text-3xl py-4 bi-animated" dangerouslySetInnerHTML={{ __html: mainHeader}} />
 					<p className="py-4 px-4 text-lg">
 						kittycoded enby programmer on the internet • minor • do drugs •
 						become ungovernable

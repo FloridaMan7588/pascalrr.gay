@@ -1,5 +1,8 @@
+import { Raleway } from "next/font/google";
 import ToTop from '@components/nav/toTop';
 import ONeko from "@components/neko";
+
+const raleway = Raleway({ subsets: ["latin"], preload: true, variable: "--font-raleway" });
 
 export const metadata = {
 	title: "Pascalrr's Links",
@@ -13,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className='scroll-smooth scrollbar-none'>
-			<body className='font-sans'>
+			<body className={`${raleway.variable} font-sans bg-ctp-base`}>
 				<code><a rel="me" href="https://blahaj.zone/@floridaman"></a></code>
 				{children}
 				<ToTop />
