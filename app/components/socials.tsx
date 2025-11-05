@@ -8,24 +8,20 @@ interface Props {
 }
 
 export default function Socials({ type }: Props) {
-	if (type == 'footer') {
-		return (
-			<div className='grid-cols-3 md:py-4 flex justify-center'>
-				<Link href='https://fm7588.me/redirect/github' aria-label='GitHub profile link'><FontAwesomeIcon icon={faGithubSquare} className='px-4 min-w-8 min-h-8 hoverPop110' /></Link>
-				<Link href='https://fm7588.me/redirect/linkedIn' aria-label='LinkedIn profile link'><FontAwesomeIcon icon={faLinkedin} className='px-4 min-w-8 min-h-8 hoverPop110' /></Link>
-				<Link href='https://fm7588.me/redirect/mastodon' aria-label='Mastodon profile link'><FontAwesomeIcon icon={faMastodon} className='px-4 min-w-8 min-h-8 hoverPop110' /></Link>
-				<Link href='https://fm7588.me/redirect/links' aria-label='Littlelink page link'><FontAwesomeIcon icon={faLink} className='px-4 min-w-8 min-h-8 hoverPop110' /></Link>
-			</div>
-		)
+	let iconCss: string;
+	if (type == 'hero') {
+		iconCss = "min-w-10 min-h-10 px-4 md:min-w-14 md:min-h-14 hoverPop110 hover:text-ctp-flamingo"
+	} else {
+		iconCss = "px-4 min-w-8 min-h-8 hoverPop110 hover:text-ctp-flamingo"
 	}
-	else if (type == 'hero') {
-		return (
-			<div className='grid-cols-4 py-8 flex justify-center'>
-				<Link href='https://fm7588.me/redirect/github' aria-label='GitHub profile link'><FontAwesomeIcon icon={faGithubSquare} className='px-4 min-w-12 min-h-12 hoverPop110' /></Link>
-				<Link href='https://fm7588.me/redirect/linkedIn' aria-label='LinkedIn profile link'><FontAwesomeIcon icon={faLinkedin} className='px-4 min-w-12 min-h-12 hoverPop110' /></Link>
-				<Link href='https://fm7588.me/redirect/mastodon' aria-label='Mastodon profile link'><FontAwesomeIcon icon={faMastodon} className='px-4 min-w-12 min-h-12 hoverPop110' /></Link>
-				<Link href='https://fm7588.me/redirect/links' aria-label='Littlelink page link'><FontAwesomeIcon icon={faLink} className='px-4 min-w-12 min-h-12 hoverPop110' /></Link>
-			</div>
-		)
-	}
+
+	return (
+		<div className='grid-cols-3 py-2 md:py-4 flex justify-center'>
+			<Link href='https://pascalrr.gay/redirect/github' aria-label='GitHub profile link'><FontAwesomeIcon icon={faGithubSquare} className={iconCss} /></Link>
+			<Link href='https://pascalrr.gay/redirect/linkedin' aria-label='LinkedIn profile link'><FontAwesomeIcon icon={faLinkedin} className={iconCss} /></Link>
+			<Link href='https://pascalrr.gay/redirect/mastodon' aria-label='Mastodon profile link'><FontAwesomeIcon icon={faMastodon} className={iconCss} /></Link>
+			<Link href='https://pascalrr.gay/redirect/links' aria-label='Linktree-like index page link'><FontAwesomeIcon icon={faLink} className={iconCss} /></Link>
+		</div>
+	)
+
 }

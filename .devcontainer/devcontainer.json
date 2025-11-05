@@ -25,7 +25,6 @@
 				"gruntfuggly.todo-tree",
 				"shardulm94.trailing-spaces",
 				"leodevbro.blockman",
-				"deque-systems.vscode-axe-linter"
 			],
 			"settings": {
                 "terminal.integrated.defaultProfile.linux": "zsh",
@@ -34,11 +33,11 @@
 		}
 	},
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/vercel-cli:1": {},
-		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {},
+		"ghcr.io/devcontainers-extra/features/vercel-cli:1": {},
+		"ghcr.io/devcontainers-extra/features/zsh-plugins:0": {},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/devcontainers-contrib/features/vercel-release:1": {},
-		"ghcr.io/devcontainers-contrib/features/vercel-serve:1": {},
+		"ghcr.io/devcontainers-extra/features/vercel-release:1": {},
+		"ghcr.io/devcontainers-extra/features/vercel-serve:1": {},
 		"ghcr.io/joshuanianji/devcontainer-features/github-cli-persistence:1": {},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/shyim/devcontainers-features/bun:0": {}

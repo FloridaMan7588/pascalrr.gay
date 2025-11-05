@@ -1,13 +1,12 @@
 import { checkRedirect } from "@lib/shorturls"
+import { redirect } from "next/navigation";
 
-export default function Redirector(req) {
-	const destination = checkRedirect(req.params.shorturl)
-	if (destination == undefined) {
-		return (
-			<meta httpEquiv="refresh" content='0;url=/404' />
-		)
+
+export default async function Redirector({params} : { params: Promise<{shorturl: string}>}) {
+	const { shorturl } = await params
+	let destination = shorturl;
+	if (!destination) {
+		redirect("/404")
 	}
-	return (
-		<meta httpEquiv="refresh" content={`0;url=${destination}`} />
-	)
+	redirect(checkRedirect(destination))
 }

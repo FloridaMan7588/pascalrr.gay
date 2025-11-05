@@ -1,4 +1,4 @@
-import { getPostSlugs, getPostData } from '@lib/posts';
+import { getAllPosts } from '@lib/posts';
 import BaseCard from '@components/cards/base';
 import CommentCard from '@components/cards/comment';
 import './post.css'
@@ -14,16 +14,16 @@ interface Content {
 	}
 }
 
-export default async function Post(req) {
-	const validSlugs = await getPostSlugs()
-	let pageSlug = '404'
-	const { slug } = await req.params
-	for (const currentSlug of validSlugs) {
-		if (slug == currentSlug) {
-			pageSlug = currentSlug
+export default async function Post({ params } : {params: Promise<{ slug: string}>}) {
+	const { slug } = await params
+	const { blogList } = await getAllPosts();
+	let postContent: Content;
+
+	for (const post of blogList) {
+		if (slug == post.slug) {
+			postContent = await post.getPostData()
 		}
 	}
-	const postContent: Content = await getPostData(pageSlug)
 	return (
 		<main className="bg-ctp-base min-h-screen max-w-screen">
 			<BaseCard>

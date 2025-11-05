@@ -9,6 +9,10 @@
 # testing
 /coverage
 
+# don't push excluded files
+*.norender*
+*.noload*
+
 # next.js
 /.next/
 /out/

@@ -9,11 +9,11 @@ export default async function Contact() {
 					title='Contact Me'
 					content='Want to get in touch with me? Have a question about something I do? Feel free to reach out to learn about my products, services, or just get to know me!'
 					contacts={[
-						{ title: 'Email', link: new URL('mailto:me@floridaman7588.me') },
-						{ title: 'Mastodon', link: new URL('https://fm7588.me/redirect/mastodon') },
-						{ title: 'LinkedIn', link: new URL('https://fm7588.me/redirect/linkedin') },
-						{ title: 'Discord', link: new URL('https://fm7588.me/redirect/discord') },
-						{ title: 'Full Social List', link: new URL('https://fm7588.me/redirect/links') }
+						{ title: 'Email', link: 'mailto:me@floridaman7588.me' },
+						{ title: 'Mastodon', link: 'https://pascalrr.gay/redirect/mastodon' },
+						{ title: 'LinkedIn', link: 'https://pascalrr.gay/redirect/linkedin' },
+						{ title: 'Discord', link: 'https://pascalrr.gay/redirect/discord' },
+						{ title: 'Full Social List', link: 'https://pascalrr.gay/redirect/links' }
 					]} />
 			</BaseCard>
 		</main>
