@@ -5,7 +5,7 @@ interface Props {
 	title: string;
 	content: string;
 	contacts: {
-		link: URL;
+		link: string;
 		title: string;
 	}[];
 }
@@ -17,7 +17,7 @@ export default function AboutCard({ title, content, contacts }: Props) {
 		contactList.push(
 			<li className="py-2 md:py-4" key={listId}>
 				<Link href={contact.link}>
-					<div className="text-lavender hoverPop105">
+					<div className="text-ctp-flamingo hoverPop105">
 						{"• " + contact.title}
 					</div>
 				</Link>

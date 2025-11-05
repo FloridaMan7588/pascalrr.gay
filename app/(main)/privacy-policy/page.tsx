@@ -7,190 +7,224 @@ export default function PrivacyPolicy() {
 			<BaseCard>
 				<div className="flex text-center flex-col text-ctp-text">
 					<h1 className="text-4xl font-bold">Privacy Policy</h1>
-					<h2 className="text-2xl font-semibold">Last updated March 28, 2024</h2>
+					<h2 className="text-2xl font-semibold">Last updated: September 18, 2025</h2>
 					<div className='text-left'>
-						<p className='px-4 py-4 md:px-16'>
-							This privacy notice for FloridaMan7588 (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), describes how and why
-							we might collect, store, use, and/or share (&quot;process&quot;) your information when you use
-							our services (&quot;Services&quot;), such as when you:
-						</p>
-						<ul className="py-2 px-4 md:px-16">
-							<li className='list-disc list-inside px-2 py-1'>Visit our website at https://floridaman7588.me, https://fm7588.me, or any website of ours that links to this privacy notice</li>
-							<li className='list-disc list-inside px-2 py-1'>Engage with us in other related ways, including any sales, marketing, or events</li>
-						</ul>
-						<p className='px-4 py-4 md:px-16'>
-							<b className='font-bold'>Questions or concerns? </b>
-							Reading this privacy notice will help you understand your
-							privacy rights and choices. If you do not agree with our policies and practices, please
-							do not use our Services. If you still have any questions or concerns, please contact
-							us at me@floridaman7588.me.
-						</p>
+						<p className='px-4 py-4 md:px-16'>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+						<p className='px-4 py-4 md:px-16'>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
 					</div>
-					<h3 className='text-2xl font-semibold'>SUMMARY OF KEY POINTS</h3>
+					<h2 className='text-2xl font-semibold'>Interpretation and Definitions</h2>
+					<h3 className='text-xl font-semibold'>Interpretation</h3>
 					<div className='text-left'>
-
-						<p className='px-4 py-4 md:px-16'>
-							<i className='font-bold italic'>
-								This summary provides key points from our privacy notice, but you can find
-								out more details about any of these topics by clicking the link following each
-								key point or by using our <Link href='#toc' className='text-ctp-lavender'>table of contents</Link> below to find the section you are
-								looking for.
-							</i>
-							<br></br>
-							<br></br>
-							<b className='font-bold'>
-								What personal information do we process?
-							</b>
-							When you visit, use, or navigate our Services, we may process personal information depending on how you interact with
-							us and the Services, the choices you make, and the products and features you use.
-							Learn more about <Link href='#personal-info' className='text-ctp-lavender'>personal information you disclose to us.</Link>
-							<br></br>
-							<br></br>
-							<b className='font-bold'>
-								Do we process any sensitive personal information?
-							</b>
-							We do not process sensitive personal information.
-							<br></br>
-							<br></br>
-							<b className='font-bold'>
-								Do we receive any information from third parties?
-							</b>
-							We do not receive any information from third parties.
-							<br></br>
-							<br></br>
-							<b className='font-bold'>
-								How do we process your information?
-							</b>
-							We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud
-							prevention, and to comply with law. We may also process your information for other
-							purposes with your consent. We process your information only when we have a valid
-							legal reason to do so. Learn more about <Link href='#info-processing' className='text-ctp-lavender'>how we process your information.</Link>
-							<br></br>
-							<br></br>
-							<b className='font-bold'>
-								In what situations and with which parties do we share personal information?
-							</b>
-							We may share information in specific situations and with specific third parties. Learn
-							more about <Link href='#info-sharing' className='text-ctp-lavender'>when and with whom we share your personal information.</Link>
-							<br></br>
-							<br></br>
-							<b className='font-bold'>
-								How do we keep your information safe?
-							</b>
-							We have organizational and technical processes and procedures in place to protect your personal information. However, no
-							electronic transmission over the internet or information storage technology can be
-							guaranteed to be 100% secure, so we cannot promise or guarantee that hackers,
-							cybercriminals, or other unauthorized third parties will not be able to defeat our
-							security and improperly collect, access, steal, or modify your information. Learn more
-							about <Link href='#info-safety' className='text-ctp-lavender'>how we keep your information safe.</Link>
-							<br></br>
-							<br></br>
-							<b className='font-bold'>
-								What are your rights?
-							</b>
-							Depending on where you are located geographically, the
-							applicable privacy law may mean you have certain rights regarding your personal
-							information. <Link href='#privacy-rights' className='text-ctp-lavender'>Learn more about your privacy rights.</Link>
-							<br></br>
-							<br></br>
-							<b className='font-bold'>How do you exercise your rights? </b>
-							The easiest way to exercise your rights is by
-							submitting a <Link href='https://forms.google.com/FILLTHISINLATER' className='text-ctp-lavender'>data subject access request</Link>, or by contacting us. We will consider and
-							act upon any request in accordance with applicable data protection laws.
-							<br></br>
-							<br></br>
-							Want to learn more about what we do with any information we collect? <Link href='#toc' className='text-ctp-lavender'>Review the
-								privacy notice in full.</Link>
-						</p>
+						<p className='px-4 py-4 md:px-16'>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
 					</div>
-					<h3 className='text-2xl font-semibold' id='toc'>TABLE OF CONTENTS</h3>
+					<h3 className='text-xl font-semibold'>Definitions</h3>
 					<div className='text-left'>
-						<ol className='py-2 px-4 md:px-16 list-decimal text-lg'>
-							<li className='list-inside'>
-								<Link href='#personal-info' className='text-ctp-lavender'>WHAT INFORMATION DO WE COLLECT?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#info-processing' className='text-ctp-lavender'>HOW DO WE PROCESS YOUR INFORMATION?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#legal-info' className='text-ctp-lavender'>WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL INFORMATION?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#sharing-partners' className='text-ctp-lavender'>WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#info-saving' className='text-ctp-lavender'>HOW LONG DO WE KEEP YOUR INFORMATION?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#info-safety' className='text-ctp-lavender'>HOW DO WE KEEP YOUR INFORMATION SAFE?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#info-coppa' className='text-ctp-lavender'> DO WE COLLECT INFORMATION FROM MINORS?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#privacy-rights' className='text-ctp-lavender'>WHAT ARE YOUR PRIVACY RIGHTS?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#do-not-track' className='text-ctp-lavender'>CONTROLS FOR DO-NOT-TRACK FEATURES</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#us-rights' className='text-ctp-lavender'>DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#notice-updates' className='text-ctp-lavender'>DO WE MAKE UPDATES TO THIS NOTICE?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#notice-contact' className='text-ctp-lavender'>HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</Link>
-							</li>
-							<li className='list-inside'>
-								<Link href='#data-takeout' className='text-ctp-lavender'>HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</Link>
-							</li>
-						</ol>
+						<p className='px-4 py-4 md:px-16'>For the purposes of this Privacy Policy:</p>
 					</div>
-					<ol className='py-2 px-4 md:px-16 list-decimal'>
-						<li id='#personal-info'>
-							<h3 className='text-2xl font-semibold' id='personal-info'>WHAT INFORMATION DO WE COLLECT?</h3>
-							<h4 className='text-lg font-semibold'>Personal Information You Disclose to Us</h4>
-							<p className='px-4 py-4 md:px-16 text-left'>
-
-								<i className='italic'><b className='font-bold'>In Short: </b></i>
-								We collect personal information that you provide to us.
-								<br></br>
-								<br></br>
-								We collect personal information that you voluntarily provide to us when you express
-								an interest in obtaining information about us or our products and Services, when you
-								participate in activities on the Services, or otherwise when you contact us.
-								<br></br>
-								<br></br>
-								<b className='font-bold'>Sensitive Information. </b>We do not process sensitive information.
-								<br></br>
-								All personal information that you provide to us must be true, complete, and accurate,
-								and you must notify us of any changes to such personal information.
-								<br></br>
-								<br></br>
-							</p>
-							<h4 className='text-lg font-semibold'>Information automatically collected</h4>
-							<p className='px-4 py-4 md:px-16 text-left'>
-
-								<i className='italic'><b className='font-bold'>In Short: </b></i>
-								Some information — such as your Internet Protocol (IP) address and/or
-								browser and device characteristics — is collected automatically when you visit our Services.
-								<br></br>
-								<br></br>
-								We automatically collect certain information when you visit, use, or navigate the
-								Services. This information does not reveal your specific identity (like your name or
-								contact information) but may include device and usage information, such as your IP
-								address, browser and device characteristics, operating system, language
-								preferences, referring URLs, device name, country, location, information about how
-								and when you use our Services, and other technical information. This information is
-								primarily needed to maintain the security and operation of our Services, and for our
-								internal analytics and reporting purposes.
-							</p>
-							{/* TODO Finish adding privacy policy (guh) */}
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.
 						</li>
-					</ol>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where &quot;control&quot; means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to Pascalrr.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Cookies</strong> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website among its many uses.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Country</strong> refers to: United States
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Service</strong> refers to the Website.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>Website</strong> refers to Pascalrr&apos;s Site, accessible from <Link href="https://pascalrr.gay" rel="external nofollow noopener" target="_blank" className='text-ctp-flamingo'>https://pascalrr.gay</Link>
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
+						</li>
+					</ul>
+					<h2 className='text-2xl font-semibold'>Collecting and Using Your Personal Data</h2>
+					<h3 className='text-xl font-semibold'>Types of Data Collected</h3>
+					<h4 className='text-lg font-semibold'>Personal Data</h4>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
+					</div>
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'>Usage Data</li>
+					</ul>
+					<h4 className='text-lg font-semibold'>Usage Data</h4>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>Usage Data is collected automatically when using the Service.</p>
+						<p className='px-4 py-4 md:px-16'>Usage Data may include information such as Your Device&apos;s Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+						<p className='px-4 py-4 md:px-16'>When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.</p>
+						<p className='px-4 py-4 md:px-16'>We may also collect information that Your browser sends whenever You visit our Service or when You access the Service by or through a mobile device.</p>
+					</div>
+					<h4 className='text-lg font-semibold'>Tracking Technologies and Cookies</h4>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>We use Cookies and similar tracking technologies to track the activity on Our Service and store certain information. Tracking technologies used are beacons, tags, and scripts to collect and track information and to improve and analyze Our Service. The technologies We use may include:</p>
+					</div>
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'><strong>Cookies or Browser Cookies.</strong> A cookie is a small file placed on Your Device. You can instruct Your browser to refuse all Cookies or to indicate when a Cookie is being sent. However, if You do not accept Cookies, You may not be able to use some parts of our Service. Unless you have adjusted Your browser setting so that it will refuse Cookies, our Service may use Cookies.</li>
+						<li className='list-disc list-inside px-2 py-1'><strong>Analytical Hashing.</strong> Provided by Vercel Analytics, visiting the site will create a unique hash based on Your Device. The Privacy Policy for Vercel Analytics can be seen <Link href='https://vercel.com/docs/analytics/privacy-policy' rel="external nofollow noopener" className='text-ctp-flamingo'>here</Link></li>
+						{/* <li className='list-disc list-inside px-2 py-1'><strong>Web Beacons.</strong> Certain sections of our Service and our emails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of a certain section and verifying system and server integrity).</li> */}
+					</ul>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser. You can learn more about cookies on <Link href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies" target="_blank" className='text-ctp-flamingo'>TermsFeed website</Link> article.</p>
+						<p className='px-4 py-4 md:px-16'>We use both Session and Persistent Cookies for the purposes set out below:</p>
+					</div>
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'>
+							<span className='font-extrabold'>Necessary / Essential Cookies</span>
+							<div>
+								<p className='px-4 py-2 md:px-16 font-regular'><span className='font-bold'>Type:</span> Session Cookies</p>
+								<p className='px-4 py-2 md:px-16'><span className='font-bold'>Administered by:</span> Us</p>
+								<p className='px-4 py-2 md:px-16'><span className='font-bold'>Purpose:</span> These Cookies are essential to provide You with services available through the Website and to enable You to use some of its features. Without these Cookies, the services that You have asked for cannot be provided, and We only use these Cookies to provide You with those services.</p>
+							</div>
+						</li>
+						{/* <li className='list-disc list-inside px-2 py-1'>
+							<strong>Cookies Policy / Notice Acceptance Cookies</strong>
+							<div>
+							<p className='px-4 py-2 md:px-16'>Type: Persistent Cookies</p>
+							<p className='px-4 py-2 md:px-16'>Administered by: Us</p>
+							<p className='px-4 py-2 md:px-16'>Purpose: These Cookies identify if users have accepted the use of cookies on the Website.</p>
+							</div>
+						</li> */}
+						{/* <li className='list-disc list-inside px-2 py-1'>
+							<strong>Functionality Cookies</strong>
+							<div>
+								<p className='px-4 py-2 md:px-16'>Type: Persistent Cookies</p>
+								<p className='px-4 py-2 md:px-16'>Administered by: Us</p>
+								<p className='px-4 py-2 md:px-16'>Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.</p>
+							</div>
+						</li> */}
+					</ul>
+					{/* <div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>For more information about the cookies we use and your choices regarding cookies, please visit our Cookies Policy or the Cookies section of our Privacy Policy.</p>
+					</div> */}
+					<h3 className='text-xl font-semibold'>Use of Your Personal Data</h3>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>The Company may use Personal Data for the following purposes:</p>
+					</div>
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>To manage Your Account:</strong> to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>For the performance of a contract:</strong> the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>To contact You:</strong> To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application&apos;s push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>To provide You</strong> with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>To manage Your requests:</strong> To attend and manage Your requests to Us.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.
+						</li>
+						<li className='list-disc list-inside px-2 py-1'>
+							<strong>For other purposes</strong>: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.
+						</li>
+					</ul>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>We may share Your personal information in the following situations:</p>
+					</div>
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service,  to contact You.</li>
+						<li className='list-disc list-inside px-2 py-1'><strong>For business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li>
+						<li className='list-disc list-inside px-2 py-1'><strong>With Affiliates:</strong> We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.</li>
+						<li className='list-disc list-inside px-2 py-1'><strong>With business partners:</strong> We may share Your information with Our business partners to offer You certain products, services or promotions.</li>
+						<li className='list-disc list-inside px-2 py-1'><strong>With other users:</strong> when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside.</li>
+						<li className='list-disc list-inside px-2 py-1'><strong>With Your consent</strong>: We may disclose Your personal information for any other purpose with Your consent.</li>
+					</ul>
+					<h3 className='text-xl font-semibold'>Retention of Your Personal Data</h3>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.</p>
+						<p className='px-4 py-4 md:px-16'>The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods.</p>
+					</div>
+					<h3 className='text-xl font-semibold'>Transfer of Your Personal Data</h3>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>Your information, including Personal Data, is processed at the Company&apos;s operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.</p>
+						<p className='px-4 py-4 md:px-16'>Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.</p>
+						<p className='px-4 py-4 md:px-16'>The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information.</p>
+					</div>
+					<h3 className='text-xl font-semibold'>Delete Your Personal Data</h3>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>You have the right to delete or request that We assist in deleting the Personal Data that We have collected about You.</p>
+						<p className='px-4 py-4 md:px-16'>Our Service may give You the ability to delete certain information about You from within the Service.</p>
+						<p className='px-4 py-4 md:px-16'>You may update, amend, or delete Your information at any time by signing in to Your Account, if you have one, and visiting the account settings section that allows you to manage Your personal information. You may also contact Us to request access to, correct, or delete any personal information that You have provided to Us.</p>
+						<p className='px-4 py-4 md:px-16'>Please note, however, that We may need to retain certain information when we have a legal obligation or lawful basis to do so.</p>
+					</div>
+					<h3 className='text-xl font-semibold'>Disclosure of Your Personal Data</h3>
+					<h4 className='text-lg font-semibold'>Business Transactions</h4>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.</p>
+					</div>
+					<h4 className='text-lg font-semibold'>Law enforcement</h4>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).</p>
+					</div>
+					<h4 className='text-lg font-semibold'>Other legal requirements</h4>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:</p>
+					</div>
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'>Comply with a legal obligation</li>
+						<li className='list-disc list-inside px-2 py-1'>Protect and defend the rights or property of the Company</li>
+						<li className='list-disc list-inside px-2 py-1'>Prevent or investigate possible wrongdoing in connection with the Service</li>
+						<li className='list-disc list-inside px-2 py-1'>Protect the personal safety of Users of the Service or the public</li>
+						<li className='list-disc list-inside px-2 py-1'>Protect against legal liability</li>
+					</ul>
+					<h3 className='text-xl font-semibold'>Security of Your Personal Data</h3>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.</p>
+					</div>
+					<h2 className='text-2xl font-semibold'>Children&apos;s Privacy</h2>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.</p>
+						<p className='px-4 py-4 md:px-16'>If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent&apos;s consent before We collect and use that information.</p>
+					</div>
+					<h2 className='text-2xl font-semibold'>Links to Other Websites</h2>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party&apos;s site. We strongly advise You to review the Privacy Policy of every site You visit.</p>
+						<p className='px-4 py-4 md:px-16'>We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p>
+					</div>
+					<h2 className='text-2xl font-semibold'>Changes to this Privacy Policy</h2>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.</p>
+						<p className='px-4 py-4 md:px-16'>We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the &quot;Last updated&quot; date at the top of this Privacy Policy.</p>
+						<p className='px-4 py-4 md:px-16'>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+					</div>
+					<h2 className='text-2xl font-semibold'>Contact Us</h2>
+					<div className='text-left'>
+						<p className='px-4 py-4 md:px-16'>If you have any questions about this Privacy Policy, You can contact us:</p>
+					</div>
+					<ul className="py-2 px-4 md:px-16 text-left">
+						<li className='list-disc list-inside px-2 py-1'>By email: privacy@pascalrr.gay</li>
+					</ul>
 				</div>
 			</BaseCard>
-		</main>
+		</main >
 	)
 }

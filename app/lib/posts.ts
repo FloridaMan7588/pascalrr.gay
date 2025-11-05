@@ -1,12 +1,12 @@
-//rewrite/restructure of posts functionality in ts
-import { ReactNode, createElement } from 'react';
+import { format } from "date-fns";
 import sanitizeHtml from 'sanitize-html'
-
-import fs from 'fs';
-import path from 'path';
-
+import { join } from 'path'
 import matter from 'gray-matter';
-import { format } from 'date-fns';
+import { readdir, readFile } from "fs/promises";
+import { createElement, ReactNode, isValidElement } from "react";
+import PostCard from "@components/cards/post";
+import { Url } from "next/dist/shared/lib/router/router";
+import { generateRssFeed } from "@lib/rss";
 
 import { unified } from 'unified';
 import { remark } from 'remark';
@@ -19,194 +19,204 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 import { all } from 'lowlight';
 
-import { generateRssFeed } from '@lib/rss';
-import PostCard from '@components/cards/post';
+export type PostType = 'blog' | 'mastodon';
 
-
-type post = 'blog' | 'toot';
-
-export class Post {
-	postData: genericPost;
-	constructor(postType: post, postData: genericPost) {
-		if (postType === 'blog') {
-		}
-		else if (postType === 'toot') {
-		}
-		else {
-			throw new Error('Invalid post type');
-		}
-	}
+abstract class GenericPost {
+    title: string;
+    author: string;
+    description?: string;
+    slug: string;
+    date: Date;
+    formattedDate: string;
+    type: PostType;
+    card: ReactNode;
+    constructor(title: string, author: string, slug: string, date: Date, type: PostType, description?: string) {
+        this.title = title;
+        this.author = author;
+        if (description) this.description = description;
+        this.slug = slug;
+        this.date = date;
+        this.formattedDate = format(date, 'do LLL. yyyy h:mm a');
+        this.type = type;
+        this.card = createElement(PostCard, { key: this.slug, title: title, date: date, formattedDate: this.formattedDate, slug: this.slug, author: this.author, description: this.description, type: this.type })
+    }
 }
 
-class genericPost {
-	title: string;
-	date: Date;
-	slug: string;
-	formattedDate: string;
-	constructor(title: string, date: Date, slug: string) {
-		this.title = title;
-		this.date = date;
-		this.slug = slug;
-		this.formattedDate = format(date, 'do LLL. yyyy h:mm a');
-	}
+class BlogPost extends GenericPost {
+    draft: boolean;
+    constructor(title: string, author: string, slug: string, date: Date, description?: string, draft?: boolean) {
+        super(title, author, slug, date, 'blog', description);
+        if (!draft) this.draft = false;
+        this.draft = draft;
+    }
+    async getPostData() {
+        const slug = this.slug
+        const filePath = join(process.cwd(), '/content/posts', `${slug}.md`);
+        const fileContents = await readFile(filePath, 'utf-8');
+        const fileMatter = matter(fileContents);
+        const processedContent = await unified()
+            .use(remarkParse)
+            .use(remarkGemoji)
+            .use(remarkGfm)
+            .use(remarkHtml, { sanitize: false })
+            .use(remarkRehype)
+            .use(rehypeHighlight, { languages: { ...all } })
+            .use(rehypeStringify)
+            .process(fileMatter.content)
+
+        const date = format(fileMatter.data.date, 'do LLL. yyyy h:mm a');
+        const renderedHtml = { __html: processedContent.toString() };
+
+        return {
+            slug,
+            renderedHtml,
+            ...fileMatter.data as PostMatter,
+            date,
+        }
+    }
 }
 
-class blogPost extends genericPost {
-	author: string;
-	description?: string;
-	card: ReactNode;
-	constructor(title: string, slug: string, date: Date, author: string, description?: string) {
-		super(title, date, slug);
-		this.author = author;
-		if (description) {
-			this.description = description;
-		}
-		this.card = createElement(PostCard, { title: this.title, date: this.date, formattedDate: this.formattedDate, slug: this.slug, author: this.author, description: this.description });
-	}
+class MastodonPost extends GenericPost {
+    content: string;
+    summary: string;
+    constructor(title: string, author: string, url: Url, date: Date, content: string, summary?: string) {
+        if (!summary) {
+            summary = content.substring(0, 128)
+        }
+        super(title, author, url.toString(), date, 'mastodon', summary);
+        this.content = content;
+        this.summary = summary;
+    }
 }
 
-class mastoPost extends genericPost {
-	content: string;
-	summary?: string;
-	card: ReactNode;
-	constructor(title: string, slug: string, date_modified: Date, content: string, summary?: string) {
-		super(title, date_modified, slug);
-		this.content = content;
-		if (summary) {
-			this.summary = summary;
-		} else {
-			this.summary = content?.substring(0, 128);
-		}
-		this.card = createElement(PostCard, { title: this.title, date: this.date, formattedDate: this.formattedDate, url: new URL(this.slug), author: 'Pascalr (Kay)', description: this.summary });
-	}
+interface PostMatter {
+    title: string;
+    date: Date;
+    draft: boolean;
+    tags: string[];
+    author: string;
+    comments: boolean
+    description?: string;
 }
 
-interface frontMatter {
-	title: string;
-	date: Date;
-	draft: boolean;
-	tags: string[];
-	author: string;
-	comments: boolean
-	description?: string;
+
+async function getAllPosts() {
+    const postList: ReactNode[] = [];
+    const blogList: BlogPost[] = [];
+    const mastodonList: MastodonPost[] = [];
+
+    await fetch('https://blahaj.zone/@floridaman.json', { next: { revalidate: 0 } })
+        .then(res => res.json())
+        .then((data) => {
+            const postData: MastodonPost[] = [];
+            for (const item of data.items) {
+                const content = sanitizeHtml(item.content_html, { allowedTags: [], });
+                postData.push(new MastodonPost('Mastodon Post', data.author.name, item.url, new Date(item.date_modified), content, item.summary))
+            }
+            for (const post of postData) {
+                postList.push(post.card);
+                mastodonList.push(post);
+            }
+        });
+
+    await (async () => {
+        const postsDirectory = join(process.cwd(), 'content/posts/');
+        const fileNames = await readdir(postsDirectory);
+        const allFileNames = fileNames.map(async (fileName) => {
+            const fileSlug = fileName.replace(/\.md$/, '');
+            const filePath = join(postsDirectory, fileName);
+            const fileContents = await readFile(filePath, 'utf-8');
+            const fileMatter = matter(fileContents);
+            return {
+                fileSlug,
+                ...fileMatter.data as PostMatter,
+            }
+        })
+        const postData: Promise<BlogPost>[] = allFileNames.map(async (post) => {
+            const data = await post;
+            return new BlogPost(data.title, data.author, data.fileSlug, data.date, data.description, data.draft);
+        })
+        return await postData
+    })().then(async (postData) => {
+        const data = await postData;
+        for (const post of data) {
+            let postObject = await post;
+            if (!postObject.draft) {
+                postList.push(postObject.card);
+                blogList.push(postObject);
+            };
+        }
+    })
+
+    postList.sort((a, b) => {
+        let dateA: Date;
+        let dateB: Date;
+        if (isValidElement(a) && isValidElement(b)) {
+            dateA = new Date((a).props.date);
+            dateB = new Date((b).props.date)
+        }
+        return dateB.getTime() - dateA.getTime();
+    });
+
+    generateRssFeed(blogList);
+    return { postList, blogList, mastodonList };
 }
 
-export async function getBlogsData(): Promise<blogPost[]> {
-	const postsDirectory = path.join(process.cwd(), 'content/posts/');
-	const fileNames = fs.readdirSync(postsDirectory);
-	const allPostsData = fileNames.map((fileName) => {
-		const slug = fileName.replace(/\.md$/, '');
-		const fullPath = path.join(postsDirectory, fileName);
-		const fileContents = fs.readFileSync(fullPath, 'utf8');
-		const matterResult = matter(fileContents);
-		return {
-			slug,
-			...matterResult.data as frontMatter,
-		};
-	});
-	const postData = allPostsData.map((post) => {
-		return new blogPost(post.title, post.slug, post.date, post.author, post.description);
-	});
-	return postData.sort((a, b) => {
-		return b.date.getTime() - a.date.getTime();
-	});
+interface GetFilteredPosts {
+    filteredPosts: ReactNode[],
+    pageUrlSuffix: string
 }
 
-export async function getMastoData() {
-	const tootData = []
-	await fetch('https://blahaj.zone/@floridaman.json', { next: { revalidate: 0 } })
-		.then(res => res.json())
-		.then(data => {
-			for (const item of data.items) {
-				const content = sanitizeHtml(item.content_html, { allowedTags: [], })
-				tootData.push(new mastoPost('New Microblog Status', item.url, new Date(item.date_modified), content, item.summary));
-			}
-		});
-	return tootData.sort((a, b) => {
-		return b.date.getTime() - a.date.getTime();
-	});
+function getFilteredPosts(filters: string, postList: ReactNode[]): GetFilteredPosts {
+    let filterList = filters.split(' ');
+    let filteredPosts = postList;
+    let pageUrlSuffix = filterList.length ? '&filter=' + filterList.join('+') : '';
+
+    const allowedTypes: string[] = [];
+    filterList.forEach((filter) => {
+        if (filter == 'blog' || filter == 'mastodon') allowedTypes.push(filter)
+    })
+
+    if (allowedTypes.length) {
+        filteredPosts = filteredPosts.filter(post =>
+            isValidElement(post) && allowedTypes.includes(post.props.type)
+        );
+    };
+
+    const postFilters: ((a: ReactNode, b: ReactNode) => number)[] = filterList.map((filter) => {
+        switch (filter) {
+            case 'latest':
+                return (a, b) => isValidElement(a) && isValidElement(b)
+                ? new Date(b.props.date).getTime() - new Date(a.props.date).getTime()            
+                : 0
+            case 'oldest':
+                return (a, b) => isValidElement(a) && isValidElement(b)
+                ? new Date(a.props.date).getTime() - new Date(b.props.date).getTime()            
+                : 0
+            case 'az':
+                return (a, b) => isValidElement(a) && isValidElement(b)
+                ? a.props.title.localeCompare(b.props.title)      
+                : 0
+            case 'za':
+                return (a, b) => isValidElement(a) && isValidElement(b)
+                ? b.props.title.localeCompare(a.props.title)      
+                : 0
+            default:
+                return () => 0;
+        };
+    });
+
+    if (postFilters.length) {
+        filteredPosts = [...filteredPosts.sort((a, b) => {
+            for (const filter of postFilters) {
+                const result = filter(a, b);
+                if (result !== 0) return result;
+            }
+            return 0;
+        })]
+    }
+
+    return { filteredPosts, pageUrlSuffix }
 }
 
-export async function getPostSlugs(): Promise<string[]> {
-	const filenames = fs.readdirSync(path.join(process.cwd(), 'content/posts/'));
-	return filenames.map((fileName) => {
-		return fileName.replace(/\.md$/, '')
-	})
-}
-
-export async function getPostData(slug: string) {
-	const fullPath = path.join(process.cwd(), 'content/posts/', `${slug}.md`);
-	const fileContents = fs.readFileSync(fullPath, 'utf8');
-	const matterResult = matter(fileContents);
-	const processedContent = await unified()
-		.use(remarkParse)
-		.use(remarkGemoji)
-		.use(remarkGfm)
-		.use(remarkHtml, { sanitize: false })
-		.use(remarkRehype)
-		.use(rehypeHighlight, { languages: { ...all } })
-		.use(rehypeStringify)
-		.process(matterResult.content)
-
-	const date = format(matterResult.data.date, 'do LLL. yyyy h:mm a');
-	const renderedHtml = { __html: processedContent.toString() };
-
-	return {
-		slug,
-		renderedHtml,
-		...matterResult.data as frontMatter,
-		date,
-	};
-}
-
-export async function getBlogPosts(): Promise<ReactNode[]> {
-	const postData = await getBlogsData();
-	await generateRssFeed();
-
-	const postList: ReactNode[] = [];
-	for (const post of postData) {
-		postList.push(
-			createElement('div', { key: post.slug, className: 'py-4 px-2' }, post.card)
-		)
-	}
-	return postList;
-}
-
-export async function getMastoPosts(): Promise<ReactNode[]> {
-	const tootData = await getMastoData();
-	const postList: ReactNode[] = [];
-	for (const post of tootData) {
-		let content;
-		if (post.summary) {
-			content = post.summary;
-		} else {
-			content = post.content?.substring(0, 128);
-		}
-		const postElement = createElement(PostCard, { title: post.title, date: post.date, formattedDate: post.formattedDate, url: post.slug, author: 'Pascalr (Kay)', description: content });
-		postList.push(
-			createElement('div', { key: post.slug, className: 'py-4 px-2' }, post.card)
-		)
-	}
-	return postList
-}
-
-export async function getAllPosts() {
-	const allPostList: ReactNode[] = [];
-
-	await getBlogPosts().then(posts => {
-		for (const post of posts) {
-			allPostList.push(post);
-		}
-	})
-	await getMastoPosts().then(posts => {
-		for (const post of posts) {
-			allPostList.push(post);
-		}
-	})
-
-	return allPostList.sort((a, b) => {
-		const dateA = new Date((a as any).props.children.props.date);
-		const dateB = new Date((b as any).props.children.props.date);
-		return dateB.getTime() - dateA.getTime();
-	});
-}
+export { GenericPost, BlogPost, MastodonPost, getAllPosts, getFilteredPosts }

@@ -25,6 +25,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+div[id^='neko-'] {
+  @apply z-50 px-4 py-4 cursor-pointer block max-w-fit max-h-fit pointer-events-auto !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -32,11 +36,15 @@ body {
 }
 
 .hoverPop105 {
-  @apply transition-transform duration-300 transform hover:scale-105
+  @apply transition-transform duration-300 transform hover:scale-105;
 }
 
 .hoverPop110 {
-  @apply transition-transform duration-300 transform hover:scale-110
+  @apply transition-transform duration-300 transform hover:scale-110;
+}
+
+.linkEffect {
+  @apply transition-all duration-300 transform ease-in-out hover:scale-110 hover:!bg-ctp-crust hover:text-ctp-flamingo;
 }
 
 
@@ -47,7 +55,7 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: rainbow_animation 6s ease-in-out infinite;
+    animation: rainbow_animation 6s ease-in infinite;
     background-size: 400% 100%;
 }
 
@@ -56,7 +64,16 @@ body {
 	-webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: rainbow_animation 6s ease-in-out infinite;
+    animation: rainbow_animation 6s ease-in infinite;
+    background-size: 400% 100%;
+}
+
+.fluid-animated {
+	background: linear-gradient(to right, #FF76A4, #FFFFFF, #C011D7, #2C2C2C, #2F3CBE);
+	-webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in infinite;
     background-size: 400% 100%;
 }
 

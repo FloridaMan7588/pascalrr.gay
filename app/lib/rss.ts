@@ -1,12 +1,16 @@
 import RSS from 'rss';
-import { appConfig } from '~/next.config.mjs'
-import { getBlogsData } from '@lib/posts';
+import { appConfig } from '~/config';
 import fs from 'fs';
 import path from 'path';
+import { BlogPost } from '~/app/lib/posts';
 
 
-export async function generateRssFeed() {
-	const allPostsData = await getBlogsData();
+export async function generateRssFeed(posts: BlogPost[]) {
+	const allPostsData = posts.sort((a, b) => {
+			let dateA: Date = new Date((a).date);
+			let dateB: Date = new Date((b).date);
+			return dateB.getTime() - dateA.getTime();
+		});
 
 	const feedOptions = {
 		title: 'Kay Haun (Pascalrr) | Blog Posts',
@@ -15,7 +19,7 @@ export async function generateRssFeed() {
 		feed_url: `${appConfig.appUrl}/feed.xml`,
 		image_url: `${appConfig.appUrl}/avatar.png`,
 		pubDate: new Date(),
-		copyright: `All Content © 2021-2024 by Cayden (Kay) Haun is licensed under CC BY-SA 4.0`,
+		copyright: `All Content © 2021-2025 by Cayden (Kay) Haun is licensed under CC BY-SA 4.0`,
 	};
 	const feed = new RSS(feedOptions);
 

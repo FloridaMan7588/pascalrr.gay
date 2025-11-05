@@ -1,0 +1,83 @@
+'use client'
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import { useState, useEffect, useMemo } from "react";
+import { useCurrentParams } from "@lib/hooks";
+import { usePathname } from "next/navigation";
+
+export default function Filter({ params }: { params: { [key: string]: string | undefined } }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [hasFilters, setHasFilters] = useState(false);
+    const [sortPrefix, setSortPrefix] = useState('?filter=');
+    const [noSortUrl, setNoSortUrl] = useState(usePathname());
+    const [possibleFilters, setPossibleFilters] = useState({
+        aToZ: true,
+        zToA: true,
+        latest: true,
+        oldest: true,
+        blog: true,
+        mastodon: true,
+    });
+    const { urlParams, hasParams, currentParams } = useCurrentParams(params);
+
+    useEffect(() => {
+        const defaultFilters = {
+            aToZ: true,
+            zToA: true,
+            latest: true,
+            oldest: true,
+            blog: true,
+            mastodon: true,
+        };
+        if (!currentParams.filter) {
+            setSortPrefix('?filter=')
+            setHasFilters(false);
+            setPossibleFilters({ ...defaultFilters })
+        }
+        if (currentParams.page) {
+            setSortPrefix('?page=' + currentParams.page + '&filter=')
+            setNoSortUrl('?page=' + currentParams.page)
+        }
+        if (currentParams.filter) {
+            setSortPrefix(urlParams + '+');
+            setHasFilters(true);
+            const disabledFiltersMap: Record<string, Partial<typeof defaultFilters>> = {
+                az: { aToZ: false, zToA: false },
+                za: { aToZ: false, zToA: false },
+                latest: { latest: false, oldest: false },
+                oldest: { latest: false, oldest: false },
+                blog: { blog: false },
+                mastodon: { mastodon: false }
+            }
+            let newState = { ...defaultFilters };
+            currentParams.filter.split('+').forEach(filter => {
+                const disabled = disabledFiltersMap[filter];
+                if (disabled) Object.assign(newState, disabled);
+            });
+            setPossibleFilters(newState);
+        }
+    }, [hasParams, currentParams.page, currentParams.filter, urlParams])
+    return (
+        <div>
+            <button type="button" className={`$flex text-ctp-text absolute top-40 right-12 sm:right-20 z-30`} onClick={() => setIsOpen(!isOpen)} aria-label='Sort Menu'>
+                <div className={`${isOpen ? 'pb-12 text-ctp-flamingo items-left' : 'text-ctp-text items-center'} p-2 flex bg-ctp-crust rounded-full`}>
+                    <FontAwesomeIcon icon={faFilter} />
+                </div>
+            </button>
+            <div className={`${isOpen ? 'visible' : 'hidden'} flex flex-row justify-end items-center`}>
+                <div className={`flex bg-ctp-crust relative rounded-[25px] justify-self-end p-4 z-40`}>
+                    <div className={`flex flex-col`}>
+                        <Link href={sortPrefix + 'az'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.aToZ ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>A-Z</Link>
+                        <Link href={sortPrefix + 'za'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.zToA ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Z-A</Link>
+                        <Link href={sortPrefix + 'latest'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.latest ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Newest First</Link>
+                        <Link href={sortPrefix + 'oldest'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.oldest ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Oldest First</Link>
+                        <Link href={sortPrefix + 'blog'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.blog ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Blog Posts</Link>
+                        <Link href={sortPrefix + 'mastodon'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.mastodon ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Mastodon Posts</Link>
+                        <Link href={noSortUrl} onClick={() => setIsOpen(!isOpen)} className={`${hasFilters ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Remove Filters</Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
