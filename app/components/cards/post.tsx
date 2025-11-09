@@ -1,9 +1,10 @@
 import Link from 'next/link'
+import parse from 'html-react-parser';
 import { PostType } from '@lib/posts';
 
 interface Props {
 	title: string;
-	date?: Date;
+	date: Date;
 	formattedDate: string;
 	description?: string;
 	author: string;
@@ -12,8 +13,9 @@ interface Props {
 }
 
 export default function PostCard({ title, formattedDate, description, author, slug, type }: Props) {
+	const postUrl = (type === 'blog' ? '/blog/' + slug : slug);
 	return (
-		<Link href={`${(type === 'blog') ? ('/blog/' + slug) : slug}`} className='p-4 text-ctp-text'>
+		<Link href={postUrl} className='p-4 text-ctp-text'>
 			<div className='bg-ctp-crust rounded-[45px] min-h-full p-4 hoverPop105'>
 				<div className='p-4'>
 					<div className={`flex flex-col sm:flex-row justify-between items-center min-h-fit ${(title.length > 20) ? 'max-w-fit' : 'max-w-min'}`}>
@@ -24,7 +26,10 @@ export default function PostCard({ title, formattedDate, description, author, sl
 					<br></br>
 					<hr></hr>
 					<br></br>
-					<p className='text-left text-lg'>{description}</p>
+					{type === 'mastodon'
+						? <div className='text-lg text-left'>{(parse(description))}</div>
+						: <p className='text-lg text-left'>{description}</p>
+					}
 				</div>
 			</div>
 		</Link>

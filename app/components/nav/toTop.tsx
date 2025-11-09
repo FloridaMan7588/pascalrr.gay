@@ -2,12 +2,12 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useScrollToTop } from "@lib/hooks";
+import { usePathname } from 'next/navigation';
+import { useCurrentParams, useScrollToTop } from "@lib/hooks";
 import { useEffect, useState } from "react";
 
 
-export default function ToTop() {
+export function ToTop() {
 	const currentPath = usePathname()
 	const { nearTop, jumpToTop } = useScrollToTop(currentPath)
 	const [highlight, setHighlight] = useState({ hovered: false, clicked: false});
@@ -32,17 +32,18 @@ export default function ToTop() {
 	)
 }
 
-export function ScrollOnLoad({ params }: { params: { [key: string]: string | undefined } }) {
-	const page = useSearchParams().get('page');
+export function ScrollOnLoad({ params }: { params: Promise<{ [key: string]: string | undefined }> }) {
 	const currentPath = usePathname();
 	const { jumpToTop } = useScrollToTop(currentPath)
 
 	useEffect(() => {
 		jumpToTop()
-		if (typeof window !== 'undefined' && page !== null) {
+		useCurrentParams(params, currentPath).then(({currentParams}) => {
+		if (typeof window !== 'undefined' && currentParams.page !== null) {
 			//const path = currentPath.split('#')[0] + `?page=${page}`
 			//window.history.replaceState(null, '', path)
 		}
-	}, [page, jumpToTop, currentPath])
+		})
+	}, [params, jumpToTop, currentPath])
 	return (<></>)
 }

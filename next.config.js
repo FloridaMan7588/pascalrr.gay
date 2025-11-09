@@ -6,6 +6,7 @@ const withMdx = nextMdx({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withMdx({
+	cacheComponents: true,
 	reactStrictMode: true,
 	pageExtensions: ['md', 'mdx', 'tsx', 'ts', 'jsx', 'js'],
 	turbopack: {

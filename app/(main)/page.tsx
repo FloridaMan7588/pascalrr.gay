@@ -15,9 +15,8 @@ import { getAllPosts } from '@lib/posts';
 import { isValidElement, ReactNode } from 'react';
 import Link from 'next/link';
 
-export const dynamic = 'force-static';
-
 export default async function Home() {
+	'use cache'
 	const { blogList } = await getAllPosts();
 	let displayedPosts: ReactNode[] = [];
 	blogList.forEach((blog) => {
@@ -122,6 +121,13 @@ export default async function Home() {
 				<div>
 					<h1 className='text-ctp-text text-center text-4xl font-bold px-7 py-4'>Recent Blog Posts</h1>
 					<div className='grid lg:grid-cols-4 justify-center'>{displayedPosts}</div>
+				</div>
+				<div className='px-4'>
+					<div className='text-center text-xl bg-ctp-crust rounded-[30px] py-2 px-2 max-w-fit items-center justify-self-center justify-center flex flex-row'>
+						<Link href='/blog' aria-label='Navigate to full blog list' className='font-bold text-ctp-flamingo text-xl px-4 py-4'>
+							View All Posts
+						</Link>
+					</div>
 				</div>
 			</BaseCard>
 		</main>

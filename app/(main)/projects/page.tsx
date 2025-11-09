@@ -5,7 +5,8 @@ import mochadLogo from '@images/projects/mochad-logo.png';
 import conductorLogo from '@images/projects/conductor-logo.png'
 import MDXWrapper from "@components/mdxwrapper";
 
-export default function Projects() {
+export default async function Projects() {
+	'use cache'
 	return (
 		<main className="bg-ctp-base min-h-screen max-w-screen text-text">
 			<BaseCard>
@@ -45,27 +46,27 @@ export default function Projects() {
 					<h2 className="text-2xl text-ctp-text">Other Projects</h2>
 				</div>
 				<div className='grid grid-cols-1 md:flex md:flex-wrap py-4 px-4 md:justify-center'>
-					<div className='px-2 py-2 min-h-full w-1/3'>
+					<div className='px-2 py-2 min-h-full md:w-1/3'>
 						<ProjectCard title='BRL Utils'
 							description={<MDXWrapper page="projects" section="brl-utils_description" components={{ p: 'text-xl text-left py-4' }} />}
 							sourceUrl='https://github.com/FloridaMan7588/brl-utils' />
 					</div>
-					<div className='px-2 py-2 min-h-full w-1/3'>
+					<div className='px-2 py-2 min-h-full md:w-1/3'>
 						<ProjectCard title='Swerve Template'
 							description={<MDXWrapper page="projects" section="swerve-template_description" components={{ p: 'text-xl text-left py-4' }} />}
 							sourceUrl='https://github.com/SMNWTeam1982/java-swerve-template' />
 					</div>
-					<div className='px-2 py-2 min-h-full w-1/3'>
+					<div className='px-2 py-2 min-h-full md:w-1/3'>
 						<ProjectCard title='OpenCore EFI'
 							description={<MDXWrapper page="projects" section="macos-efi_description" components={{ p: 'text-xl text-left py-4' }} />}
 							sourceUrl='https://github.com/FloridaMan7588/MacOS-efi' />
 					</div>
-					<div className='px-2 py-2 min-h-full w-1/2'>
+					<div className='px-2 py-2 min-h-full md:w-1/2'>
 						<ProjectCard title='PiHole Webhook'
 							description={<MDXWrapper page="projects" section="pihole-webhook_description" components={{ p: 'text-xl text-left py-4' }} />}
 							sourceUrl='https://github.com/FloridaMan7588/pihole-webhook' />
 					</div>
-					<div className='px-2 py-2 min-h-full w-1/2'>
+					<div className='px-2 py-2 min-h-full md:w-1/2'>
 						<ProjectCard title='SMS Tank Drive'
 							description={<MDXWrapper page="projects" section="tank-drive_description" components={{ p: 'text-xl text-left py-4' }} />}
 							sourceUrl='https://github.com/SMNWTeam1982/SMS-Tank-Drive' />

@@ -17,6 +17,7 @@ export const metadata = {
 export default function GlobalLayout({ children }: { children: ReactNode}) {
 	return (
 		<html lang="en" className={`scroll-smooth scrollbar-none`}>
+			<Statistics />
 			{children}
 		</html>
 	);

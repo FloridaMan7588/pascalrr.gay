@@ -1,5 +1,5 @@
 import { Raleway } from "next/font/google";
-import ToTop from '@components/nav/toTop';
+import { ToTop } from '@components/nav/toTop';
 import ONeko from "@components/neko";
 import { ReactNode } from "react";
 

@@ -2,11 +2,12 @@
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useCurrentParams } from "@lib/hooks";
 import { usePathname } from "next/navigation";
 
-export default function Filter({ params }: { params: { [key: string]: string | undefined } }) {
+export default function Filter({ params }: { params: Promise<{ [key: string]: string | undefined }> }) {
+    const currentPath = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [hasFilters, setHasFilters] = useState(false);
     const [sortPrefix, setSortPrefix] = useState('?filter=');
@@ -19,7 +20,7 @@ export default function Filter({ params }: { params: { [key: string]: string | u
         blog: true,
         mastodon: true,
     });
-    const { urlParams, hasParams, currentParams } = useCurrentParams(params);
+
 
     useEffect(() => {
         const defaultFilters = {
@@ -30,34 +31,37 @@ export default function Filter({ params }: { params: { [key: string]: string | u
             blog: true,
             mastodon: true,
         };
-        if (!currentParams.filter) {
-            setSortPrefix('?filter=')
-            setHasFilters(false);
-            setPossibleFilters({ ...defaultFilters })
-        }
-        if (currentParams.page) {
-            setSortPrefix('?page=' + currentParams.page + '&filter=')
-            setNoSortUrl('?page=' + currentParams.page)
-        }
-        if (currentParams.filter) {
-            setSortPrefix(urlParams + '+');
-            setHasFilters(true);
-            const disabledFiltersMap: Record<string, Partial<typeof defaultFilters>> = {
-                az: { aToZ: false, zToA: false },
-                za: { aToZ: false, zToA: false },
-                latest: { latest: false, oldest: false },
-                oldest: { latest: false, oldest: false },
-                blog: { blog: false },
-                mastodon: { mastodon: false }
+        useCurrentParams(params, currentPath).then(({ currentParams, urlParams }) => {
+            if (!currentParams.filter) {
+                setSortPrefix('?filter=')
+                setHasFilters(false);
+                setPossibleFilters({ ...defaultFilters })
             }
-            let newState = { ...defaultFilters };
-            currentParams.filter.split('+').forEach(filter => {
-                const disabled = disabledFiltersMap[filter];
-                if (disabled) Object.assign(newState, disabled);
-            });
-            setPossibleFilters(newState);
-        }
-    }, [hasParams, currentParams.page, currentParams.filter, urlParams])
+            if (currentParams.page) {
+                setSortPrefix('?page=' + currentParams.page + '&filter=')
+                setNoSortUrl('?page=' + currentParams.page)
+            }
+            if (currentParams.filter) {
+                setSortPrefix(urlParams + '+');
+                setHasFilters(true);
+                const disabledFiltersMap: Record<string, Partial<typeof defaultFilters>> = {
+                    az: { aToZ: false, zToA: false },
+                    za: { aToZ: false, zToA: false },
+                    latest: { latest: false, oldest: false },
+                    oldest: { latest: false, oldest: false },
+                    blog: { blog: false },
+                    mastodon: { mastodon: false }
+                }
+                let newState = { ...defaultFilters };
+                currentParams.filter.split('+').forEach(filter => {
+                    const disabled = disabledFiltersMap[filter];
+                    if (disabled) Object.assign(newState, disabled);
+                });
+                setPossibleFilters(newState);
+
+            }
+        });
+    }, [params])
     return (
         <div>
             <button type="button" className={`$flex text-ctp-text absolute top-40 right-12 sm:right-20 z-30`} onClick={() => setIsOpen(!isOpen)} aria-label='Sort Menu'>

@@ -1,5 +1,4 @@
-import { usePathname } from "next/navigation";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface useScreenSize {
     resolution: {
@@ -88,20 +87,19 @@ export interface useCurrentParams {
     hasParams: boolean;
 }
 
-export function useCurrentParams(searchParams: { [key: string]: string | undefined }): useCurrentParams {
-    const currentPath = usePathname();
+export async function useCurrentParams(searchParams: Promise<{ [key: string]: string | undefined }>, currentPath: string): Promise<useCurrentParams> {
+    const currentParams = (await searchParams) ?? {};
     let urlPrefix = currentPath;
     let urlParams = '';
     let hasParams = false;
-    let currentParams = {};
-    let params = Object.keys(searchParams);
+    let params = Object.keys(currentParams);
     if (params.length != 0) {
         hasParams = true
         for (const param of params) {
-            if (searchParams[param].includes(' ')) {
-                currentParams[param] = searchParams[param].split(' ').join('+')
+            if (currentParams[param].includes(' ')) {
+                currentParams[param] = currentParams[param].split(' ').join('+')
             } else {
-                currentParams[param] = searchParams[param]
+                currentParams[param] = currentParams[param]
             }
             let seperator = '&';
             if (params.indexOf(param) == 0) {

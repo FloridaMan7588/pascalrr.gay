@@ -13,7 +13,8 @@ import { createElement, ReactNode } from "react";
 const arima = Arima({ subsets: ["latin"], preload: true, display: 'swap', weight: '700' });
 
 
-export default function Page() {
+export default async function Page() {
+	'use cache'
 	const randomBreaks: ReactNode[] = [];
 	const randomNumber = Math.floor(Math.random() * (120 - 80)) + 80
 	for (let i = 0; i < randomNumber; i++) {

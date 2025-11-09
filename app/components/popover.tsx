@@ -15,7 +15,7 @@ export default function PopOver({ children, content, className, backgroundClassN
     if (!backgroundClassName) backgroundClassName = "bg-ctp-surface0";
     return (
         <span onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}>
-            <span className="min-w-fit relative min-h-full inline-block">
+            <span className="min-w-fit relative min-h-fit inline-block">
                 <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 z-40">
                     <span className={`${isHovered ? 'visible' : 'hidden'}`}>
                         <span className={`${backgroundClassName} p-1 text-xs flex min-w-fit text-nowrap align-content-center justify-center rounded-lg`}>

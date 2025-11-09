@@ -18,13 +18,15 @@ import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
 import { all } from 'lowlight';
+import { evaluate, compile } from '@mdx-js/mdx';
+import * as runtime from 'react/jsx-runtime';
 
 export type PostType = 'blog' | 'mastodon';
 
 abstract class GenericPost {
     title: string;
     author: string;
-    description?: string;
+    description: string;
     slug: string;
     date: Date;
     formattedDate: string;
@@ -33,12 +35,12 @@ abstract class GenericPost {
     constructor(title: string, author: string, slug: string, date: Date, type: PostType, description?: string) {
         this.title = title;
         this.author = author;
-        if (description) this.description = description;
+        this.description = description || '';
         this.slug = slug;
         this.date = date;
         this.formattedDate = format(date, 'do LLL. yyyy h:mm a');
         this.type = type;
-        this.card = createElement(PostCard, { key: this.slug, title: title, date: date, formattedDate: this.formattedDate, slug: this.slug, author: this.author, description: this.description, type: this.type })
+        this.card = createElement(PostCard, { key: this.slug, title: this.title, date: this.date, formattedDate: this.formattedDate, description: this.description, author: this.author, slug: this.slug, type: this.type })
     }
 }
 
@@ -54,22 +56,12 @@ class BlogPost extends GenericPost {
         const filePath = join(process.cwd(), '/content/posts', `${slug}.md`);
         const fileContents = await readFile(filePath, 'utf-8');
         const fileMatter = matter(fileContents);
-        const processedContent = await unified()
-            .use(remarkParse)
-            .use(remarkGemoji)
-            .use(remarkGfm)
-            .use(remarkHtml, { sanitize: false })
-            .use(remarkRehype)
-            .use(rehypeHighlight, { languages: { ...all } })
-            .use(rehypeStringify)
-            .process(fileMatter.content)
-
         const date = format(fileMatter.data.date, 'do LLL. yyyy h:mm a');
-        const renderedHtml = { __html: processedContent.toString() };
+        const { default: mdxContent } = await evaluate(fileMatter.content, { ...runtime, remarkPlugins: [remarkGemoji, remarkGfm], rehypePlugins: [rehypeHighlight] })
 
         return {
             slug,
-            renderedHtml,
+            Section: mdxContent,
             ...fileMatter.data as PostMatter,
             date,
         }
@@ -77,15 +69,8 @@ class BlogPost extends GenericPost {
 }
 
 class MastodonPost extends GenericPost {
-    content: string;
-    summary: string;
-    constructor(title: string, author: string, url: Url, date: Date, content: string, summary?: string) {
-        if (!summary) {
-            summary = content.substring(0, 128)
-        }
+    constructor(title: string, author: string, url: Url, date: Date, summary?: string) {
         super(title, author, url.toString(), date, 'mastodon', summary);
-        this.content = content;
-        this.summary = summary;
     }
 }
 
@@ -105,13 +90,20 @@ async function getAllPosts() {
     const blogList: BlogPost[] = [];
     const mastodonList: MastodonPost[] = [];
 
-    await fetch('https://blahaj.zone/@floridaman.json', { next: { revalidate: 0 } })
-        .then(res => res.json())
+    await fetch('https://blahaj.zone/@floridaman.json', { next: { revalidate: 600 } })
+        .then((res) => res.json())
         .then((data) => {
             const postData: MastodonPost[] = [];
             for (const item of data.items) {
-                const content = sanitizeHtml(item.content_html, { allowedTags: [], });
-                postData.push(new MastodonPost('Mastodon Post', data.author.name, item.url, new Date(item.date_modified), content, item.summary))
+                const content = sanitizeHtml(item.content_html, { allowedTags: ['p', 'span', 'i', 'b', 'strong', 'br'] });
+                if (!item.summary) {
+                    if (content.length > 192) {
+                        const summary = content.slice(0, 191).trim();
+                        const trimIndex = (summary.lastIndexOf(" ") < summary.lastIndexOf("<") ? summary.lastIndexOf("<") : summary.lastIndexOf(" "));
+                        item.summary = summary.slice(0, trimIndex) + "...";
+                    } else item.summary = content;
+                }
+                postData.push(new MastodonPost('Mastodon Post', data.author.name, item.url, new Date(item.date_modified), item.summary))
             }
             for (const post of postData) {
                 postList.push(post.card);
@@ -152,8 +144,8 @@ async function getAllPosts() {
         let dateA: Date;
         let dateB: Date;
         if (isValidElement(a) && isValidElement(b)) {
-            dateA = new Date((a).props.date);
-            dateB = new Date((b).props.date)
+            dateA = (a).props.date;
+            dateB = (b).props.date
         }
         return dateB.getTime() - dateA.getTime();
     });
@@ -187,20 +179,20 @@ function getFilteredPosts(filters: string, postList: ReactNode[]): GetFilteredPo
         switch (filter) {
             case 'latest':
                 return (a, b) => isValidElement(a) && isValidElement(b)
-                ? new Date(b.props.date).getTime() - new Date(a.props.date).getTime()            
-                : 0
+                    ? new Date(b.props.date).getTime() - new Date(a.props.date).getTime()
+                    : 0
             case 'oldest':
                 return (a, b) => isValidElement(a) && isValidElement(b)
-                ? new Date(a.props.date).getTime() - new Date(b.props.date).getTime()            
-                : 0
+                    ? new Date(a.props.date).getTime() - new Date(b.props.date).getTime()
+                    : 0
             case 'az':
                 return (a, b) => isValidElement(a) && isValidElement(b)
-                ? a.props.title.localeCompare(b.props.title)      
-                : 0
+                    ? a.props.title.localeCompare(b.props.title)
+                    : 0
             case 'za':
                 return (a, b) => isValidElement(a) && isValidElement(b)
-                ? b.props.title.localeCompare(a.props.title)      
-                : 0
+                    ? b.props.title.localeCompare(a.props.title)
+                    : 0
             default:
                 return () => 0;
         };
