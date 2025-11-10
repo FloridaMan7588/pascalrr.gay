@@ -21,39 +21,6 @@ const defaultComponents: MDXComponents = {
 }
 
 
-// const resolveImportExtension = (prefix) => {
-//     let extension: string = '';
-//     if (prefix == '@components') extension += '.tsx';
-//     if (prefix == '@lib') extension += '.ts';
-//     if (prefix == '@images') extension += '.png';
-//     return extension;
-// }
-
-// function resolveImportAlias(importMatch: string[]) {
-//     const [aliasPrefix, aliasSuffix] = importMatch[2].split('/');
-//     const paths = tsConfig.compilerOptions.paths;
-//     if (paths[`${aliasPrefix}/*`]) {
-//         const pathPrefix = paths[`${aliasPrefix}/*`][0].replace('*', '')
-//         const pathSuffix = resolveImportExtension(aliasPrefix);
-//         return join(process.cwd(), pathPrefix, aliasSuffix + pathSuffix);
-//     }
-//     return importMatch[0];
-//     // return importStatement.replace(importRegex, (match: string, component: string, alias: string) => {
-//         // component = component.trim()
-//         // console.log(component)
-//         // const [aliasPrefix, aliasSuffix] = alias.split('/');
-//         // const paths = tsConfig.compilerOptions.paths;
-//         // // const fileExtension = resolveImportExtension(aliasPrefix);
-//         // let resolvedPath: string | undefined;
-//         // if (paths[`${aliasPrefix}/*`]) {
-//         //     const pathValue = paths[`${aliasPrefix}/*`][0].replace(/\.\/|\*/g, '');
-//         //     resolvedPath = join(pathValue, aliasSuffix);
-//         //     return resolvedPath;
-//         // }
-//         // return match;
-//     // });
-// }
-
 interface GetPageContent {
     pageName: string;
     sectionName?: string;

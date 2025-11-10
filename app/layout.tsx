@@ -2,8 +2,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false
 import "@/globals.css";
-import Statistics from "@components/statistics";
 import { ReactNode } from "react";
+import Statistics from "@components/statistics";
 
 export const metadata = {
 	title: "Pascalrr's Site",
@@ -14,10 +14,12 @@ export const metadata = {
 	}
 };
 
-export default function GlobalLayout({ children }: { children: ReactNode}) {
+export default async function GlobalLayout({ children }: { children: ReactNode}) {
 	return (
 		<html lang="en" className={`scroll-smooth scrollbar-none`}>
-			<Statistics />
+			<head>
+				<Statistics/>
+			</head>
 			{children}
 		</html>
 	);

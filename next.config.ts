@@ -1,11 +1,6 @@
-import nextMdx from '@next/mdx'
+import type { NextConfig } from 'next'
 
-const withMdx = nextMdx({
-	extension: /\.(md|mdx)$/
-})
-
-/** @type {import('next').NextConfig} */
-const nextConfig = withMdx({
+const nextConfig: NextConfig = {
 	cacheComponents: true,
 	reactStrictMode: true,
 	pageExtensions: ['md', 'mdx', 'tsx', 'ts', 'jsx', 'js'],
@@ -19,6 +14,7 @@ const nextConfig = withMdx({
 		}
 	},
 	experimental: {
+		turbopackMinify: true,
 		optimizeCss: true,
 	},
 	images: {
@@ -32,6 +28,6 @@ const nextConfig = withMdx({
 			},
 		],
 	},
-});
+};
 
 export default nextConfig;

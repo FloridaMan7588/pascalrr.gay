@@ -47,14 +47,14 @@
         "./content/*"
       ]
     },
-    "target": "es2022"
+    "target": "esnext"
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.js",
+    "next.config.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [

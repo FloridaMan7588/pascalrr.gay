@@ -8,8 +8,8 @@ import Filter from '@components/nav/filter';
 
 async function ListSkelton(props: { postList: ReactNode[]; pageList: ReactNode[] } | 'loading') {
 	if (props === 'loading') {
-		const postList = []
-		for (let i = 0; i < 6; i++) postList.push(<div className='p-4' key={i}><div className="rounded-[45px] bg-ctp-surface0 w-auto h-auto" style={{ aspectRatio: '2 / 1.25' }} /></div>)
+		const postList: ReactNode[] = []
+	for (let i = 0; i < 6; i++) postList.push(<div className='py-4 h-fit md:p-4' key={i}><div className="rounded-[45px] bg-ctp-surface0 p-4 min-h-[275px]" /></div>)
 		return (<>
 			<div className='h-fit justify-center flex animate-pulse'>
 				<div className='md:grid md:grid-cols-2 w-full'>
@@ -69,7 +69,7 @@ export default async function Blog({ searchParams }: { searchParams: Promise<{ [
 			<BaseCard>
 				<div>
 					<h1 className='text-center text-3xl font-bold py-4 px-2'>Recent Posts</h1>
-					<Suspense><Filter params={searchParams} /></Suspense>
+					<Filter params={searchParams} />
 				</div>
 				<Suspense fallback={ListSkelton('loading')}>
 					<PostList params={searchParams} />

@@ -45,18 +45,12 @@
     "react-server-dom-webpack": "^19.2.0",
     "rehype": "^13.0.2",
     "rehype-highlight": "^7.0.2",
-    "rehype-stringify": "^10.0.1",
-    "remark": "^15.0.1",
     "remark-gemoji": "^8.0.0",
     "remark-gfm": "^4.0.1",
     "remark-highlight.js": "^7.0.1",
-    "remark-html": "^16.0.1",
-    "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.2",
     "rss": "^1.2.2",
     "sanitize-html": "^2.17.0",
-    "sharp": "^0.33.5",
-    "unified": "^11.0.5"
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6",

@@ -28,7 +28,7 @@ export default function ProjectCard({ title, description, image, imageLink, down
 						{image && (
 							<Link href={imageLink} className='block w-full max-w-[22.5rem]'>
 								<div
-									className='relative w-full overflow-hidden rounded-xl aspect-square'
+									className='relative w-full overflow-hidden rounded-xl aspect-square hoverPop105'
 									style={{ aspectRatio: '1 / 1' }}
 								>
 									<Image

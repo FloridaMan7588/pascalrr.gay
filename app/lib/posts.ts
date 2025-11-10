@@ -8,17 +8,10 @@ import PostCard from "@components/cards/post";
 import { Url } from "next/dist/shared/lib/router/router";
 import { generateRssFeed } from "@lib/rss";
 
-import { unified } from 'unified';
-import { remark } from 'remark';
-import remarkParse from 'remark-parse';
-import remarkHtml from 'remark-html';
 import remarkGemoji from 'remark-gemoji';
 import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
-import rehypeStringify from 'rehype-stringify';
-import { all } from 'lowlight';
-import { evaluate, compile } from '@mdx-js/mdx';
+import { evaluate } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 
 export type PostType = 'blog' | 'mastodon';

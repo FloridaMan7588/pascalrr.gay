@@ -64,21 +64,23 @@ export default function Filter({ params }: { params: Promise<{ [key: string]: st
     }, [params])
     return (
         <div>
-            <button type="button" className={`$flex text-ctp-text absolute top-40 right-12 sm:right-20 z-30`} onClick={() => setIsOpen(!isOpen)} aria-label='Sort Menu'>
-                <div className={`${isOpen ? 'pb-12 text-ctp-flamingo items-left' : 'text-ctp-text items-center'} p-2 flex bg-ctp-crust rounded-full`}>
+            <button type="button" className={`flex text-ctp-text absolute top-40 right-12 sm:right-20 z-30`} onClick={() => setIsOpen(!isOpen)} aria-label='Sort Menu'>
+                <div className={`transition-[padding-bottom] duration-75 ease-in-out ${isOpen ? 'pb-10 text-ctp-flamingo items-left' : 'text-ctp-text items-center duration-0'} p-2 flex bg-ctp-crust rounded-full`}>
                     <FontAwesomeIcon icon={faFilter} />
                 </div>
             </button>
-            <div className={`${isOpen ? 'visible' : 'hidden'} flex flex-row justify-end items-center`}>
-                <div className={`flex bg-ctp-crust relative rounded-[25px] justify-self-end p-4 z-40`}>
-                    <div className={`flex flex-col`}>
-                        <Link href={sortPrefix + 'az'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.aToZ ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>A-Z</Link>
-                        <Link href={sortPrefix + 'za'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.zToA ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Z-A</Link>
-                        <Link href={sortPrefix + 'latest'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.latest ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Newest First</Link>
-                        <Link href={sortPrefix + 'oldest'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.oldest ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Oldest First</Link>
-                        <Link href={sortPrefix + 'blog'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.blog ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Blog Posts</Link>
-                        <Link href={sortPrefix + 'mastodon'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.mastodon ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Mastodon Posts</Link>
-                        <Link href={noSortUrl} onClick={() => setIsOpen(!isOpen)} className={`${hasFilters ? 'visible' : 'hidden'} px-6 text-ctp-text font-bold`}>Remove Filters</Link>
+            <div className="relative">
+                <div className={`transition-opacity ease-in-out duration-100 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'} left-[80%] -right-2 -top-4 absolute z-50 flex justify-end items-center p-2`}>
+                    <div className={`flex bg-ctp-crust shadow-lg shadow-ctp-mantle relative rounded-[25px] justify-self-end p-2`}>
+                        <div className={`flex flex-col h-fit w-full p-2 sm:text-justify text-left text-nowrap`}>
+                            <Link href={sortPrefix + 'az'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.aToZ ? 'visible' : 'hidden'} px-2 py-0.5 text-ctp-text font-bold`}>A-Z</Link>
+                            <Link href={sortPrefix + 'za'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.zToA ? 'visible' : 'hidden'} px-2 py-0.5 text-ctp-text font-bold`}>Z-A</Link>
+                            <Link href={sortPrefix + 'latest'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.latest ? 'visible' : 'hidden'} px-2 py-0.5 text-ctp-text font-bold`}>Newest First</Link>
+                            <Link href={sortPrefix + 'oldest'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.oldest ? 'visible' : 'hidden'} px-2 py-0.5 text-ctp-text font-bold`}>Oldest First</Link>
+                            <Link href={sortPrefix + 'blog'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.blog ? 'visible' : 'hidden'} px-2 py-0.5 text-ctp-text font-bold`}>Blog Posts</Link>
+                            <Link href={sortPrefix + 'mastodon'} onClick={() => setIsOpen(!isOpen)} className={`${possibleFilters.mastodon ? 'visible' : 'hidden'} px-2 py-0.5 text-ctp-text font-bold`}>Mastodon Posts</Link>
+                            <Link href={noSortUrl} onClick={() => setIsOpen(!isOpen)} className={`${hasFilters ? 'visible' : 'hidden'} px-2 py-0.5 text-ctp-text font-bold`}>Remove Filters</Link>
+                        </div>
                     </div>
                 </div>
             </div>

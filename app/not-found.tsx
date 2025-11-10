@@ -3,7 +3,6 @@ import Link from "next/link";
 
 const raleway = Raleway({ subsets: ["latin"], preload: true, variable: "--font-raleway" });
 
-
 export default function Custom404() {
 	return (
 		<body>
